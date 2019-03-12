@@ -19,7 +19,7 @@ def grayscale():
         file.save(path + extension)
         jpg = grayscaleCmd(path, extension)
 
-        return send_file(jpg, mimetype='image/jpg')
+        return send_file(jpg)
 
 
 @app.route('/grayscale/resize', methods=['POST'])
@@ -34,11 +34,11 @@ def grayscaleResized():
         file.save(path + extension)
         jpg = grayscaleCmd(path, extension)
 
-        url = 'http://localhost:8083/resize'
+        url = 'http://resize:8083/resize'
         files = {'file': open(jpg, 'rb')}
 
         r = requests.post(url, files=files, data={'size': size})
-        return send_file(BytesIO(r.content), mimetype='image/jpg')
+        return send_file(BytesIO(r.content))
 
 
 def grayscaleCmd(path, extension):

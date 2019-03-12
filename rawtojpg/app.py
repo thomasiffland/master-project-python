@@ -20,7 +20,7 @@ def rawToJpg():
         path = os.path.join(app.config['UPLOAD_FOLDER'], str(uuid.uuid4()))
         file.save(path + extension)
         jpg = rawToJpgCmd(path, extension)
-        return send_file(jpg, mimetype='image/jpg')
+        return send_file(jpg)
 
 
 @app.route('/rawtojpg/grayscale', methods=['POST'])
@@ -34,7 +34,7 @@ def rawToJpgGreyscale():
         file.save(path + extension)
         jpg = rawToJpgCmd(path, extension)
 
-        url = 'http://localhost:8081/grayscale'
+        url = 'http://grayscale:8081/grayscale'
         files = {'file': open(jpg, 'rb')}
 
         r = requests.post(url, files=files)
