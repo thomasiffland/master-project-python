@@ -3,6 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get install python3-pip python3-dev build-essential -y
 RUN apt-get install imagemagick -y
+RUN apt-get install unzip -y
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:dhor/myway
 RUN apt-get install dcraw -y
