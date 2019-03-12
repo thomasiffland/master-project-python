@@ -12,6 +12,8 @@ app.config['UPLOAD_FOLDER'] = '/tmp'
 
 @app.route('/rawtojpg', methods=['POST'])
 def rawToJpg():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     if file:
         extension = os.path.splitext(file.filename)[1]
@@ -23,6 +25,8 @@ def rawToJpg():
 
 @app.route('/rawtojpg/grayscale', methods=['POST'])
 def rawToJpgGreyscale():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     if file:
         extension = os.path.splitext(file.filename)[1]

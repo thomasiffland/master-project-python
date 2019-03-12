@@ -10,6 +10,8 @@ app.config['UPLOAD_FOLDER'] = '/tmp/images'
 
 @app.route('/grayscale', methods=['POST'])
 def grayscale():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     if file:
         extension = os.path.splitext(file.filename)[1]
@@ -22,6 +24,8 @@ def grayscale():
 
 @app.route('/grayscale/resize', methods=['POST'])
 def grayscaleResized():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     size = request.values['size']
     if file:

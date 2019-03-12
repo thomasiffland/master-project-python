@@ -9,6 +9,8 @@ app.config['UPLOAD_FOLDER'] = '/tmp/images'
 
 @app.route('/exifdata', methods=['POST'])
 def exifdata():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     if file:
         extension = os.path.splitext(file.filename)[1]
@@ -18,6 +20,8 @@ def exifdata():
 
 @app.route('/exifdata/filtered', methods=['POST'])
 def exifdataFiltered():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     filter = request.values['filter']
     if file:

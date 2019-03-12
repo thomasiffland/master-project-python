@@ -9,6 +9,8 @@ app.config['UPLOAD_FOLDER'] = '/tmp/images'
 
 @app.route('/timelapse', methods=['POST'])
 def timelapse():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     framerate = request.values['framerate']
     if file:

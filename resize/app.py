@@ -10,6 +10,8 @@ app.config['UPLOAD_FOLDER'] = '/tmp/images'
 
 @app.route('/resize', methods=['POST'])
 def resize():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     size = request.values['size']
     if file:
@@ -21,6 +23,8 @@ def resize():
 
 @app.route('/resize/percent', methods=['POST'])
 def resizePercent():
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     file = request.files['file']
     percent = request.values['percent']
     if file:
