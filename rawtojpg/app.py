@@ -38,7 +38,7 @@ def rawToJpgGreyscale():
         files = {'file': open(jpg, 'rb')}
 
         r = requests.post(url, files=files)
-        return send_file(BytesIO(r.content), mimetype='image/jpg')
+        return send_file(BytesIO(r.content), mimetype='image/*')
 
 
 def rawToJpgCmd(path, extension):

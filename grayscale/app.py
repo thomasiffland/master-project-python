@@ -38,7 +38,7 @@ def grayscaleResized():
         files = {'file': open(jpg, 'rb')}
 
         r = requests.post(url, files=files, data={'size': size})
-        return send_file(BytesIO(r.content))
+        return send_file(BytesIO(r.content),mimetype="image/*")
 
 
 def grayscaleCmd(path, extension):

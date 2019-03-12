@@ -39,7 +39,7 @@ def resizePercent():
         percentSize = float(str(r.text).split(':')[1].strip()) * (float(percent) / 100)
 
         resized = resizeCmd(path, extension, str(percentSize)+'x'+str(percentSize))
-        return send_file(resized)
+        return send_file(resized, mimetype="image/*")
 
 
 
