@@ -19,7 +19,7 @@ def resize():
         path = os.path.join(app.config['UPLOAD_FOLDER'], str(uuid.uuid4()))
         file.save(path + extension)
         resized = resizeCmd(path, extension, size)
-        return send_file(resized, mimetype='image/jpg')
+        return send_file(resized)
 
 @app.route('/resize/percent', methods=['POST'])
 def resizePercent():
@@ -31,7 +31,7 @@ def resizePercent():
         extension = os.path.splitext(file.filename)[1]
         path = os.path.join(app.config['UPLOAD_FOLDER'], str(uuid.uuid4()))
         file.save(path + extension)
-        url = 'http://localhost:8082/exifdata/filtered'
+        url = 'http://exifdata:8082/exifdata/filtered'
         files = {'file': open(path+extension, 'rb')}
 
         r = requests.post(url, files=files, data={'filter': 'Image Height'})
